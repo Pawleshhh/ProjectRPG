@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TabletopRpg.Core", "TabletopRpg.Core\TabletopRpg.Core.csproj", "{99C3B151-D913-4995-A591-CB281357A719}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectRPG.Core", "TabletopRpg.Core\ProjectRPG.Core.csproj", "{99C3B151-D913-4995-A591-CB281357A719}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TabletopRpg.Core.Test", "TabletopRpg.Core.Test\TabletopRpg.Core.Test.csproj", "{5A7EA3A5-BCA8-43E4-A0CF-057D8F4FBCEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectRPG.Core.Test", "TabletopRpg.Core.Test\ProjectRPG.Core.Test.csproj", "{5A7EA3A5-BCA8-43E4-A0CF-057D8F4FBCEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
