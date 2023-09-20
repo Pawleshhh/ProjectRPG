@@ -37,7 +37,7 @@ internal class DefaultRng : IRandomNumberGenerator
 
     public void Reset()
     {
-        this.random = null;
+        random = null;
     }
 
     public void Reset(int seed)
