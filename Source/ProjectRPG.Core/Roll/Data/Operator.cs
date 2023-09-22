@@ -39,6 +39,6 @@ internal static class OperatorExtensions
     }
 
     public static ArgumentException GetNotDefinedOperatorException()
-        => new ArgumentException("There is not such operator defined");
+        => new("There is no such operator defined");
 
 }
