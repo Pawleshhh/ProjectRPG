@@ -1,7 +1,7 @@
 ﻿namespace ProjectRPG.Core.Test;
 
 [TestFixture]
-internal class SingleRollBaseTest
+internal class SingleRollBaseTest : RollBaseTest<SingleRollBase>
 {
 
     [TestCase(4)]
@@ -143,10 +143,9 @@ internal class SingleRollBaseTest
     {
         // ARRANGE
         var singleRoll = CreateRoll();
-        var otherRoll = singleRoll;
 
         // ACT & ASSERT
-        TestEquatable.TestEquals_SameReference_ReturnsTrue<ISingleRoll>(singleRoll, otherRoll);
+        TestEquatable.TestEquals_SameReference_ReturnsTrue<ISingleRoll>(singleRoll);
     }
 
     [Test]
@@ -216,10 +215,9 @@ internal class SingleRollBaseTest
     {
         // ARRANGE
         var singleRoll = CreateRoll();
-        var otherRoll = singleRoll;
 
         // ACT & ASSERT
-        TestEquatable.TestObjectEquals_SameReference_ReturnsTrue<ISingleRoll>(singleRoll, otherRoll);
+        TestEquatable.TestObjectEquals_SameReference_ReturnsTrue<ISingleRoll>(singleRoll);
     }
 
     [Test]
@@ -337,35 +335,6 @@ internal class SingleRollBaseTest
         });
 
         return itself;
-    }
-
-    #endregion
-
-    #region Helpers
-
-    private SingleRollBase CreateRoll()
-        => CreateRoll(MoqHelper.CreateRngMock(0));
-
-    private SingleRollBase CreateRoll(Mock<IRandomNumberGenerator> rngMock)
-        => new SingleRollBase { Rng = rngMock.Object };
-
-    #endregion
-
-    #region Mocks
-
-    class RollMock : IRoll
-    {
-        public IRandomNumberGenerator Rng { get; init; } = default!;
-
-        public bool Equals(IRoll? other)
-        {
-            return false;
-        }
-
-        public int Roll()
-        {
-            return 0;
-        }
     }
 
     #endregion

@@ -18,9 +18,12 @@ internal static class TestEquatable
         Assert.That(result, Is.False);
     }
 
-    public static void TestObjectEquals_SameReference_ReturnsTrue<T>(T t, T same)
-        where T : IEquatable<T>
+    public static void TestObjectEquals_SameReference_ReturnsTrue<T>(T t)
+        where T : class, IEquatable<T>
     {
+        // ARRANGE
+        T same = t;
+
         // ACT
         var result = t.Equals((object)same);
 
@@ -65,9 +68,12 @@ internal static class TestEquatable
 
     #region IEquatable<T>.Equals
 
-    public static void TestEquals_SameReference_ReturnsTrue<T>(T t, T same)
-        where T : IEquatable<T>
+    public static void TestEquals_SameReference_ReturnsTrue<T>(T t)
+        where T : class, IEquatable<T>
     {
+        // ARRANGE
+        T same = t;
+
         // ACT
         var result = t.Equals(same);
 

@@ -40,7 +40,7 @@ internal class MultipleRollBase : IMultipleRoll
             stringBuilder.Append(this.rolls[i].ToString());
             if (i < this.rolls.Count - 1)
             {
-                stringBuilder.Append(' ');
+                stringBuilder.Append(", ");
             }
         }
 
@@ -60,22 +60,28 @@ internal class MultipleRollBase : IMultipleRoll
 
     public bool Equals(IMultipleRoll? other)
     {
-        if (other is null)
+        return this.Equals(other, () =>
         {
-            return false;
-        }
+            if (this.rolls.Count != other!.Rolls.Count())
+            {
+                return false;
+            }
 
-        if (ReferenceEquals(this, other))
-        {
+            for (int i = 0; i < this.rolls.Count; i++)
+            {
+                if (!this.rolls[i].Equals(other.Rolls.ElementAt(i)))
+                {
+                    return false;
+                }
+            }
+
             return true;
-        }
-
-        return Enumerable.SequenceEqual(Rolls, other.Rolls);
+        });
     }
 
     public override bool Equals(object? obj)
     {
-        return base.Equals(obj);
+        return (this as IMultipleRoll).ObjectEquals(obj);
     }
 
     public override int GetHashCode()
