@@ -47,7 +47,7 @@ internal class SingleRollBase : ISingleRoll
     public int Roll()
     {
         var rolledDiceValue =
-            Enumerable.Range(1, DiceCount + 1)
+            Enumerable.Range(0, DiceCount)
                 .Select(d => Rng.NextInt(1, Dice.SideCount + 1))
                 .Sum();
 
@@ -64,7 +64,9 @@ internal class SingleRollBase : ISingleRoll
 
     public override string ToString()
     {
-        return $"{Dice} {FactorOperator.GetOpCharacter()} {Factor}";
+        string factor = Factor < 0 ? $"({Factor})" : Factor.ToString();
+        string dice = DiceCount > 1 ? $"{DiceCount}{Dice}" : Dice.ToString();
+        return $"{dice} {FactorOperator.GetOpCharacter()} {factor}";
     }
 
     public bool Equals(IRoll? other)
@@ -79,31 +81,17 @@ internal class SingleRollBase : ISingleRoll
 
     public bool Equals(ISingleRoll? other)
     {
-        if (other is null)
-        {
-            return false;
-        }
-
-        if (ReferenceEquals(this, other))
-        {
-            return true;
-        }
-
-        return Dice.Equals(other.Dice)
+        return this.Equals(other, () =>
+            Dice.Equals(other!.Dice)
             && DiceCount == other.DiceCount
             && Factor == other.Factor
             && FactorOperator == other.FactorOperator
-            && FloatRoundOperation == other.FloatRoundOperation;
+            && FloatRoundOperation == other.FloatRoundOperation);
     }
 
     public override bool Equals(object? obj)
     {
-        if (obj is ISingleRoll singleRoll)
-        {
-            return Equals(singleRoll);
-        }
-
-        return false;
+        return (this as ISingleRoll).ObjectEquals(obj);
     }
 
     public override int GetHashCode()
