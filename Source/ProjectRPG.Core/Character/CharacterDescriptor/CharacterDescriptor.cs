@@ -62,9 +62,7 @@ public class CharacterDescriptor :
 
     public override int GetHashCode()
     {
-        return CharacterInfos
-            .Sum(info => info.GetHashCode())
-            .GetHashCode();
+        return HashCodeHelper.GetHashCodeOfCollection(CharacterInfos.Values);
     }
 
     #endregion
