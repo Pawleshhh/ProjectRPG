@@ -50,6 +50,19 @@ public record CharacterInfo<T> : ICharacterInfo
 
     #endregion
 
+    #region ToString
+
+    public override string ToString()
+    {
+        return CharacterInfoType switch
+        {
+            CharacterInfoType.Double => $"{Key} : {Value:F2}",
+            _ => $"{Key} : {Value}"
+        };
+    }
+
+    #endregion
+
     #region Static methods
 
     public static CharacterInfo<string> CreateStringInfo(string key, string value)

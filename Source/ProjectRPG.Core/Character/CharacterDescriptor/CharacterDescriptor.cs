@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Text;
 
 namespace ProjectRPG.Core;
 
@@ -64,6 +65,30 @@ public class CharacterDescriptor :
         return CharacterInfos
             .Sum(info => info.GetHashCode())
             .GetHashCode();
+    }
+
+    #endregion
+
+    #region ToString
+
+    private string? toStringValue;
+
+    public override string ToString()
+    {
+        if (this.toStringValue is not null)
+        {
+            return this.toStringValue;
+        }
+
+        StringBuilder sb = new();
+        foreach (var characterInfo in CharacterInfos.Values)
+        {
+            sb.AppendLine(characterInfo.ToString());
+        }
+
+        this.toStringValue = sb.ToString();
+
+        return this.toStringValue;
     }
 
     #endregion
