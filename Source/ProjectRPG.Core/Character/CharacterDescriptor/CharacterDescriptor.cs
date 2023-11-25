@@ -1,6 +1,10 @@
-﻿namespace ProjectRPG.Core;
+﻿using System.Collections.Immutable;
 
-public class CharacterDescriptor : IEquatable<CharacterDescriptor>
+namespace ProjectRPG.Core;
+
+public class CharacterDescriptor : 
+    IEquatable<CharacterDescriptor>,
+    ICopyableAndModifiable<CharacterDescriptor, Dictionary<string, ICharacterInfo>>
 {
 
     #region Constructors
@@ -8,6 +12,11 @@ public class CharacterDescriptor : IEquatable<CharacterDescriptor>
     public CharacterDescriptor(IEnumerable<ICharacterInfo> characterInfos)
     {
         CharacterInfos = characterInfos.ToDictionary(info => info.Key);
+    }
+
+    public CharacterDescriptor(IDictionary<string, ICharacterInfo> characterInfos)
+    {
+        CharacterInfos = characterInfos.ToImmutableDictionary();
     }
 
     #endregion
@@ -18,14 +27,43 @@ public class CharacterDescriptor : IEquatable<CharacterDescriptor>
 
     #endregion
 
+    #region Methods
+
+    public CharacterDescriptor Copy()
+    {
+        return new CharacterDescriptor(CopyCharacterInfos());
+    }
+
+    public CharacterDescriptor CopyAndModify(Func<Dictionary<string, ICharacterInfo>, CharacterDescriptor> modify)
+    {
+        return modify(CopyCharacterInfos());
+    }
+
+    private Dictionary<string, ICharacterInfo> CopyCharacterInfos()
+        => CharacterInfos.Values.Select(c => c.Copy()).ToDictionary(c => c.Key);
+
+    #endregion
+
     #region IEquatable
 
     public bool Equals(CharacterDescriptor? other)
     {
         return this.Equals(other, () =>
         {
-            return false;
+            return CharacterInfos.IsEqualTo(other!.CharacterInfos);
         });
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return this.ObjectEquals(obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return CharacterInfos
+            .Sum(info => info.GetHashCode())
+            .GetHashCode();
     }
 
     #endregion

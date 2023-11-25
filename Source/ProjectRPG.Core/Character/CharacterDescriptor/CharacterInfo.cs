@@ -1,6 +1,6 @@
 ﻿namespace ProjectRPG.Core;
 
-public interface ICharacterInfo
+public interface ICharacterInfo : ICopyable<ICharacterInfo>
 {
 
     public string Key { get; }
@@ -28,6 +28,25 @@ public record CharacterInfo<T> : ICharacterInfo
     public CharacterInfoType CharacterInfoType { get; init; } = CharacterInfoType.Other;
 
     object ICharacterInfo.Value => Value!;
+
+    #endregion
+
+    #region Clone
+
+    public ICharacterInfo Copy()
+    {
+        if (Value is ICloneable cloneable)
+        {
+            return new CharacterInfo<T>()
+            {
+                Key = Key,
+                Value = (T)cloneable.Clone(),
+                CharacterInfoType = CharacterInfoType
+            };
+        }
+
+        return (CharacterInfo<T>)MemberwiseClone();
+    }
 
     #endregion
 

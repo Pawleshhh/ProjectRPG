@@ -10,7 +10,7 @@ internal static class EquatableExtensions
             return false;
         }
 
-        return NoNullCheckEquals(@this, other, equals);
+        return IsReferenceEqualOrEqualByValue(@this, other, equals);
     }
 
     public static bool ObjectEquals<T>(this T @this, object? obj)
@@ -24,7 +24,7 @@ internal static class EquatableExtensions
         return false;
     }
 
-    private static bool NoNullCheckEquals<T>(T @this, T? other, Func<bool> equals)
+    private static bool IsReferenceEqualOrEqualByValue<T>(T @this, T? other, Func<bool> equals)
     {
         if (ReferenceEquals(@this, other))
         {
