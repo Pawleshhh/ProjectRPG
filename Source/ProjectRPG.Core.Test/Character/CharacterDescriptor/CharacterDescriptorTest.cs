@@ -10,8 +10,8 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
 
         // Act
@@ -27,8 +27,8 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos = new Dictionary<string, ICharacterInfo>
         {
-            { "Name", CharacterInfo<string>.CreateStringInfo("Name", "John") },
-            { "Level", CharacterInfo<int>.CreateIntInfo("Level", 5) }
+            { "Name", CharacterInfo.CreateStringInfo("Name", "John") },
+            { "Level", CharacterInfo.CreateIntInfo("Level", 5) }
         };
 
         // Act
@@ -44,8 +44,8 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var originalDescriptor = new CharacterDescriptor(characterInfos);
 
@@ -66,15 +66,15 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var originalDescriptor = new CharacterDescriptor(characterInfos);
 
         // Act
         var modifiedDescriptor = originalDescriptor.CopyAndModify(dictionary =>
         {
-            dictionary["Level"] = CharacterInfo<int>.CreateIntInfo("Level", 10);
+            dictionary["Level"] = CharacterInfo.CreateIntInfo("Level", 10);
             return new CharacterDescriptor(dictionary);
         });
 
@@ -93,13 +93,13 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos1 = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var characterInfos2 = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var descriptor1 = new CharacterDescriptor(characterInfos1);
         var descriptor2 = new CharacterDescriptor(characterInfos2);
@@ -114,13 +114,13 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos1 = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var characterInfos2 = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "Jane"), // Different value for "Name"
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "Jane"), // Different value for "Name"
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var descriptor1 = new CharacterDescriptor(characterInfos1);
         var descriptor2 = new CharacterDescriptor(characterInfos2);
@@ -135,8 +135,8 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var descriptor = new CharacterDescriptor(characterInfos);
 
@@ -150,13 +150,13 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos1 = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var characterInfos2 = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var descriptor1 = new CharacterDescriptor(characterInfos1);
         var descriptor2 = new CharacterDescriptor(characterInfos2);
@@ -175,13 +175,13 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos1 = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var characterInfos2 = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "Jane"), // Different value for "Name"
-            CharacterInfo<int>.CreateIntInfo("Level", 5)
+            CharacterInfo.CreateStringInfo("Name", "Jane"), // Different value for "Name"
+            CharacterInfo.CreateIntInfo("Level", 5)
         };
         var descriptor1 = new CharacterDescriptor(characterInfos1);
         var descriptor2 = new CharacterDescriptor(characterInfos2);
@@ -200,9 +200,9 @@ internal class CharacterDescriptorTest
         // Arrange
         var characterInfos = new List<ICharacterInfo>
         {
-            CharacterInfo<string>.CreateStringInfo("Name", "John"),
-            CharacterInfo<int>.CreateIntInfo("Level", 5),
-            CharacterInfo<double>.CreateDoubleInfo("Money", 12.4321)
+            CharacterInfo.CreateStringInfo("Name", "John"),
+            CharacterInfo.CreateIntInfo("Level", 5),
+            CharacterInfo.CreateDoubleInfo("Money", 12.4321)
         };
 
         var descriptor = new CharacterDescriptor(characterInfos);

@@ -11,7 +11,7 @@ internal class CharacterInfoTest
         string value = "John";
 
         // Act
-        var stringInfo = CharacterInfo<string>.CreateStringInfo(key, value);
+        var stringInfo = CharacterInfo.CreateStringInfo(key, value);
 
         // Assert
         Assert.Multiple(() =>
@@ -30,7 +30,7 @@ internal class CharacterInfoTest
         int value = 5;
 
         // Act
-        var intInfo = CharacterInfo<int>.CreateIntInfo(key, value);
+        var intInfo = CharacterInfo.CreateIntInfo(key, value);
 
         // Assert
         Assert.Multiple(() =>
@@ -49,7 +49,7 @@ internal class CharacterInfoTest
         double value = 75.5;
 
         // Act
-        var doubleInfo = CharacterInfo<double>.CreateDoubleInfo(key, value);
+        var doubleInfo = CharacterInfo.CreateDoubleInfo(key, value);
 
         // Assert
         Assert.Multiple(() =>
@@ -64,7 +64,7 @@ internal class CharacterInfoTest
     public void Copy_ShouldReturnClonedObject()
     {
         // Arrange
-        var originalInfo = CharacterInfo<int>.CreateIntInfo("Test", 42);
+        var originalInfo = CharacterInfo.CreateIntInfo("Test", 42);
 
         // Act
         var clonedInfo = originalInfo.Copy();
@@ -108,7 +108,7 @@ internal class CharacterInfoTest
     public void ToString_ShouldReturnCorrectStringRepresentation()
     {
         // Arrange
-        var doubleInfo = CharacterInfo<double>.CreateDoubleInfo("Height", 180.7523);
+        var doubleInfo = CharacterInfo.CreateDoubleInfo("Height", 180.7523);
 
         // Act
         string result = doubleInfo.ToString();

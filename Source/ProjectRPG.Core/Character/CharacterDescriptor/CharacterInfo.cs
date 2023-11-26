@@ -63,14 +63,19 @@ public record CharacterInfo<T> : ICharacterInfo
 
     #endregion
 
+}
+
+public record CharacterInfo : CharacterInfo<object>
+{
+
     #region Static methods
 
     public static CharacterInfo<string> CreateStringInfo(string key, string value)
         => new()
-        { 
-            Key = key, 
-            Value = value, 
-            CharacterInfoType = CharacterInfoType.String 
+        {
+            Key = key,
+            Value = value,
+            CharacterInfoType = CharacterInfoType.String
         };
 
     public static CharacterInfo<int> CreateIntInfo(string key, int value)
